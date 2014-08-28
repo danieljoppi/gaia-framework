@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>gaia-parent</artifactId>
+		<groupId>net.sf.gaia</groupId>
+		<version>2.1-SNAPSHOT</version>
+		<relativePath>../gaia-parent/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.sf.gaia.framework</groupId>
+	<artifactId>gaia-framework-top</artifactId>
+	<version>${gaia-version}</version>
+
+	<name>Gaia Framework Top</name>
+	<description>Top-level build for Default modules in Gaia</description>
+	<packaging>pom</packaging>
+
+	<profiles>
+		<profile>
+			<id>default-profile</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>gaia-dynamic-table</module>
+			</modules>
+		</profile>
+	</profiles>
+
+	<!--
+     # do not distribute top poms:
+     -->
+	<distributionManagement>
+		<repository>
+			<id>default-remote-repo</id>
+			<name>default-remote-repo</name>
+			<url>file://${basedir}/target/remote_not</url>
+		</repository>
+	</distributionManagement>
+</project>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>gaia-parent</artifactId>
+		<groupId>net.sf.gaia</groupId>
+		<version>2.1-SNAPSHOT</version>
+		<relativePath>../gaia-parent/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.sf.gaia.testcase</groupId>
+	<artifactId>gaia-test-case-top</artifactId>
+	<version>${gaia-version}</version>
+
+	<name>Gaia Test Case Top</name>
+	<description>Top-level build for Test Case modules in Gaia</description>
+	<packaging>pom</packaging>
+
+	<profiles>
+		<profile>
+			<id>default-profile</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>gaia-test-case-utils</module>
+
+				<!--module>gaia-test-case-database-derby</module-->
+				<module>gaia-test-case-database-mysql</module>
+				<module>gaia-test-case-database-postgres</module>
+			</modules>
+		</profile>
+	</profiles>
+
+	<!--
+     # do not distribute top poms:
+     -->
+	<distributionManagement>
+		<repository>
+			<id>default-remote-repo</id>
+			<name>default-remote-repo</name>
+			<url>file://${basedir}/target/remote_not</url>
+		</repository>
+	</distributionManagement>
+</project>

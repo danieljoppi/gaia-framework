@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>gaia-parent</artifactId>
+		<groupId>net.sf.gaia</groupId>
+		<version>2.1-SNAPSHOT</version>
+		<relativePath>../../gaia-parent/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gaia-test-case-database-mysql</artifactId>
+	<groupId>net.sf.gaia.testcase.database</groupId>
+	<version>${gaia-version}</version>
+
+	<name>Gaia Test Case: Database MySQL</name>
+	<description>Engine to simulated MySQL Server</description>
+	<packaging>jar</packaging>
+
+	<properties>
+		<hibernate-version>3.5.1-Final</hibernate-version>
+	</properties>
+
+	<dependencies>
+		<!-- GAIA -->
+		<dependency>
+			<groupId>net.sf.gaia.testcase.database</groupId>
+			<artifactId>gaia-test-case-utils</artifactId>
+			<version>${gaia-version}</version>
+		</dependency>
+		<!-- /GAIA -->
+
+		<!-- DRIVER -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.12</version>
+		</dependency>
+		<!-- /DRIVER -->
+
+		<!-- HIBERNATE -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<!-- /HIBERNATE -->
+	</dependencies>
+</project>

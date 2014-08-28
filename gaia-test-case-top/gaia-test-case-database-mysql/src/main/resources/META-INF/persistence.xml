@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit name="gaiatest-mysql" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.username" value="gaiatester" />
+			<property name="hibernate.connection.password" value="gaiatester" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gaiatest" />
+			<property name="hibernate.connection.isolation" value="1" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.ejb.naming_strategy" value="net.sf.gaia.persistence.schema.MySQLSafeNamingStrategy" />
+
+			<!-- Configurações padrão -->
+			<property name="hibernate.bytecode.use_reflection_optimizer" value="true" />
+			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.max_fetch_depth" value="0" />
+			<property name="hibernate.connection.pool_size" value="12" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="false" />
+			
+            <!-- C3P0 como gerenciador do pool de conexões -->
+            <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+            <property name="hibernate.c3p0.acquire_increment"  value="1" />
+            <property name="hibernate.c3p0.idle_test_period"  value="100" /> <!-- seconds --> 
+            <property name="hibernate.c3p0.max_size"  value="12" /> 
+            <property name="hibernate.c3p0.max_statements"  value="0" /> 
+            <property name="hibernate.c3p0.min_size"  value="4" />
+            <property name="hibernate.c3p0.timeout"  value="0" /> <!-- seconds -->			
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="gaiatest-mysqlspatial" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.username" value="gaiatester" />
+			<property name="hibernate.connection.password" value="gaiatester" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gaiatest" />
+			<property name="hibernate.connection.isolation" value="1" />
+			<property name="hibernate.dialect" value="org.hibernatespatial.mysql.MySQLSpatialDialect" />
+			<property name="hibernate.ejb.naming_strategy" value="net.sf.gaia.persistence.schema.MySQLSafeNamingStrategy" />
+
+			<!-- Configurações padrão -->
+			<property name="hibernate.bytecode.use_reflection_optimizer" value="true" />
+			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.max_fetch_depth" value="0" />
+			<property name="hibernate.connection.pool_size" value="12" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="false" />
+			
+            <!-- C3P0 como gerenciador do pool de conexões -->
+            <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+            <property name="hibernate.c3p0.acquire_increment"  value="1" />
+            <property name="hibernate.c3p0.idle_test_period"  value="100" /> <!-- seconds --> 
+            <property name="hibernate.c3p0.max_size"  value="12" /> 
+            <property name="hibernate.c3p0.max_statements"  value="0" /> 
+            <property name="hibernate.c3p0.min_size"  value="4" />
+            <property name="hibernate.c3p0.timeout"  value="0" /> <!-- seconds -->			
+		</properties>
+	</persistence-unit>
+</persistence>

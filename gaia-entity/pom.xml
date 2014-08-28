@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>gaia-parent</artifactId>
+		<groupId>net.sf.gaia</groupId>
+		<version>2.1-SNAPSHOT</version>
+		<relativePath>../gaia-parent/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gaia-entity</artifactId>
+	<groupId>net.sf.gaia</groupId>
+	<version>${gaia-version}</version>
+
+	<name>Gaia Entity</name>
+	<description>Base-Entity for Gaia Project</description>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- HIBERNATE -->
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.1-Final</version>
+		</dependency>
+		<!-- /HIBERNATE -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+	</dependencies>
+</project>

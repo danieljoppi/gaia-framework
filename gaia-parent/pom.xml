@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gaia-parent</artifactId>
+	<groupId>net.sf.gaia</groupId>
+	<version>2.1-SNAPSHOT</version>
+
+	<name>Gaia Parent</name>
+	<description>Parent pom for Gaia Projects</description>
+	<packaging>pom</packaging>
+
+	<inceptionYear>2009</inceptionYear>
+
+	<!-- global properties: -->
+	<properties>
+		<gaia-version>2.1-SNAPSHOT</gaia-version>
+		<gaia-maven.dir>${basedir}/../maven</gaia-maven.dir>
+
+		<!-- Test properties -->
+		<gaia-test-dir>${project.build.directory}/.gaia</gaia-test-dir>
+		<gaia-test-service-dir>${gaia-test-dir}/lib</gaia-test-service-dir>
+		<!-- MySQL Connection Test -->
+		<mysql.host>localhost</mysql.host>
+		<mysql.portNumber>3306</mysql.portNumber>
+		<mysql.user>root</mysql.user>
+		<mysql.pass>root</mysql.pass>
+		<!-- PostgreSQL Connection Test -->
+		<postgres.host>localhost</postgres.host>
+		<postgres.portNumber>5432</postgres.portNumber>
+		<postgres.user>postgres</postgres.user>
+		<postgres.pass>postgres</postgres.pass>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.3</version>
+					<inherited>true</inherited>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.ant</groupId>
+							<artifactId>ant</artifactId>
+							<version>1.7.1</version>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.ant</groupId>
+							<artifactId>ant-nodeps</artifactId>
+							<version>1.7.1</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.1.1</version>
+					<inherited>true</inherited>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.0.2</version>
+					<inherited>true</inherited>
+
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.0</version>
+					<inherited>true</inherited>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.2</version>
+					<inherited>true</inherited>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.1</version>
+					<inherited>true</inherited>
+					<configuration>
+						<archive>
+							<index>true</index>
+							<manifest>
+								<addClasspath>false</addClasspath>
+								<addDefaultImplementationEntries>true
+								</addDefaultImplementationEntries>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.7.2</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.3</version>
+					<inherited>true</inherited>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.3</version>
+					<inherited>true</inherited>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.2</version>
+					<configuration>
+						<outputDirectory>${project.build.directory}</outputDirectory>
+						<finalName>${project.build.finalName}</finalName>
+						<attach>true</attach>
+					</configuration>
+					<inherited>true</inherited>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<!--plugins>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>Deploy POM</id>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy-file</goal>
+						</goals>
+						<configuration>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.artifactId}</artifactId>
+							<version>${project.version}</version>
+							<packaging>pom</packaging>
+							<file>pom.xml</file>
+							<url>file://${gaia-maven.dir}</url>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins-->
+	</build>
+
+	<profiles>
+		<!-- Profile to test MySQL -->
+		<profile>
+			<id>mysql</id>
+			<build>
+				<plugins>
+					<plugin>
+						<inherited>true</inherited>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemProperties>
+								<property>
+									<name>gaia.mysql.test</name>
+									<value>true</value>
+								</property>
+								<property>
+									<name>mysql.host</name>
+									<value>${mysql.host}</value>
+								</property>
+								<property>
+									<name>mysql.portNumber</name>
+									<value>${mysql.portNumber}</value>
+								</property>
+								<property>
+									<name>mysql.user</name>
+									<value>${mysql.user}</value>
+								</property>
+								<property>
+									<name>mysql.pass</name>
+									<value>${mysql.pass}</value>
+								</property>
+							</systemProperties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!-- Profile to test PostgreSQL -->
+		<profile>
+			<id>postgres</id>
+			<build>
+				<plugins>
+					<plugin>
+						<inherited>true</inherited>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemProperties>
+								<property>
+									<name>gaia.postgres.test</name>
+									<value>true</value>
+								</property>
+								<property>
+									<name>postgres.host</name>
+									<value>${postgres.host}</value>
+								</property>
+								<property>
+									<name>postgres.portNumber</name>
+									<value>${postgres.portNumber}</value>
+								</property>
+								<property>
+									<name>postgres.user</name>
+									<value>${postgres.user}</value>
+								</property>
+								<property>
+									<name>postgres.pass</name>
+									<value>${postgres.pass}</value>
+								</property>
+							</systemProperties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!-- Profile to test wish All Databases -->
+		<profile>
+			<id>alldb</id>
+			<build>
+				<plugins>
+					<plugin>
+						<inherited>true</inherited>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemProperties>
+								<!-- MySQL Properties -->
+								<property>
+									<name>gaia.mysql.test</name>
+									<value>true</value>
+								</property>
+								<property>
+									<name>mysql.host</name>
+									<value>${mysql.host}</value>
+								</property>
+								<property>
+									<name>mysql.portNumber</name>
+									<value>${mysql.portNumber}</value>
+								</property>
+								<property>
+									<name>mysql.user</name>
+									<value>${mysql.user}</value>
+								</property>
+								<property>
+									<name>mysql.pass</name>
+									<value>${mysql.pass}</value>
+								</property>
+								<!-- PostgreSQL Properties -->
+								<property>
+									<name>gaia.postgres.test</name>
+									<value>true</value>
+								</property>
+								<property>
+									<name>postgres.host</name>
+									<value>${postgres.host}</value>
+								</property>
+								<property>
+									<name>postgres.portNumber</name>
+									<value>${postgres.portNumber}</value>
+								</property>
+								<property>
+									<name>postgres.user</name>
+									<value>${postgres.user}</value>
+								</property>
+								<property>
+									<name>postgres.pass</name>
+									<value>${postgres.pass}</value>
+								</property>
+							</systemProperties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>ibiblio</id>
+			<name>ibiblio Maven 2 Repository</name>
+			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
+		</repository>
+
+		<repository>
+			<id>ibiblio legacy</id>
+			<name>ibiblio Maven 1 Repository</name>
+			<url>http://mirrors.ibiblio.org/pub/mirrors/maven</url>
+			<layout>legacy</layout>
+		</repository>
+
+		<repository>
+			<id>central</id>
+			<name>Maven2 Central Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<!-- repository for open-esb, fuji, and ojc artifacts. -->
+		<repository>
+			<id>java.net-maven2-repository</id>
+			<name>download.java.net top maven2 repository</name>
+			<url>http://download.java.net/maven/esb</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>codehaus-repository</id>
+			<name>codehaus maven2 repository</name>
+			<url> http://repository.codehaus.org</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>glassfish-maven-repository</id>
+			<name>GlassFish java.net Maven 1.x Repository</name>
+			<layout>legacy</layout>
+			<url>http://download.java.net/javaee5/external/shared</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>maven-snapshots</id>
+			<name>Maven Snapshots</name>
+			<url>http://people.apache.org/maven-snapshot-repository</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle
+				Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>JBOSS</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/maven2</url>
+		</repository>
+
+		<!-- java.net developer legacy maven 1.x repository.  -->
+		<repository>
+			<id>download-java-net-legacy-repository</id>
+			<name>download.java.net Maven 1.x repository</name>
+			<url>http://download.java.net/maven/1</url>
+			<layout>legacy</layout>
+		</repository>
+
+		<!-- java.net developer legacy maven 2.x repository.  -->
+		<repository>
+			<id>download-java-net-maven2-repository</id>
+			<name>download.java.net Maven 2.x repository</name>
+			<url>http://download.java.net/maven/2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>java.net-glassfish-repository</id>
+			<name>download.java.net glassfish repository</name>
+			<url>http://download.java.net/maven/glassfish</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>MMBase</id>
+			<name>MMBase Maven 2 Repository</name>
+			<url>http://www.mmbase.org/maven2</url>
+		</repository>
+
+		<repository>
+			<id>MMBase Snapshots</id>
+			<name>MMBase Maven2 snapshots repository</name>
+			<url>http://www.mmbase.org/snapshots</url>
+		</repository>
+
+		<repository>
+			<id>Geotools</id>
+			<name>Geotools Maven 2 Repository</name>
+			<url>http://maven.geotools.fr/repository</url>
+		</repository>
+
+		<repository>
+			<id>CMS</id>
+			<name>CMS Container repository</name>
+			<url>http://www.cmscontainer.org/files/maven/</url>
+			<layout>legacy</layout>
+		</repository>
+
+		<repository>
+			<id>LuxSotNet</id>
+			<name>LuxSotNet Maven 2 Repository</name>
+			<url>http://www.luxsoftnet.com/m2/repository</url>
+		</repository>
+
+		<repository>
+			<id>E-Taxonomy</id>
+			<name>E-Taxonomy Maven 2 Repository</name>
+			<url>http://wp5.e-taxonomy.eu/cdmlib/mavenrepo</url>
+		</repository>
+
+		<!-- Gaia developer repository for any gaia artifacts -->
+		<repository>
+			<id>Gaia-repo</id>
+			<name>Gaia Developer Repository</name>
+			<url>https://gaia-framework.svn.sourceforge.net/svnroot/gaia-framework/gaia-repository
+			</url>
+			<releases>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+</project>

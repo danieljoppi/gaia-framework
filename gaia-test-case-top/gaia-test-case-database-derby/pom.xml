@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>gaia-parent</artifactId>
+		<groupId>net.sf.gaia</groupId>
+		<version>2.0</version>
+		<relativePath>../../gaia-parent/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gaia-test-case-database-derby</artifactId>
+	<groupId>net.sf.gaia.testcase.database</groupId>
+	<version>${gaia-version}</version>
+
+	<name>Gaia Test Case: Database Apache Derby</name>
+	<description>Engine to simulated Apache Derby Server</description>
+	<packaging>jar</packaging>
+
+	<properties>
+		<derby-version>10.7.1.1</derby-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>${derby-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbynet</artifactId>
+			<version>${derby-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbytools</artifactId>
+			<version>${derby-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.derby</groupId>
+		    <artifactId>derbyclient</artifactId>
+		    <version>${derby-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.derby</groupId>
+		    <artifactId>derbyLocale_pt_BR</artifactId>
+		    <version>${derby-version}</version>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>gaia-parent</artifactId>
+		<groupId>net.sf.gaia</groupId>
+		<version>2.1-SNAPSHOT</version>
+		<relativePath>../../gaia-parent/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gaia-default-entity</artifactId>
+	<groupId>net.sf.gaia.default</groupId>
+	<version>${gaia-version}</version>
+
+	<name>Gaia Default Entity</name>
+	<description>Default Entitys using in Gaia Project</description>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.gaia</groupId>
+			<artifactId>gaia-entity</artifactId>
+			<version>${gaia-version}</version>
+		</dependency>
+	</dependencies>
+</project>
